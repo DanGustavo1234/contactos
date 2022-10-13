@@ -1,17 +1,22 @@
 <template>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 
 
 <vs-row vs-justify="center">
-  <vs-col type="flex" vs-justify="center" vs-align="center" vs-w="5">
+
+  <vs-col type="flex" vs-justify="center" vs-align="center" vs-w="6">
+
 <vs-row vs-justify="center">
   
-    <vs-card class="cardx">
-      <vs-row vs-justify="center">
-      <vs-col vs-type="flex" vs-justify="center"  vs-align="center"  vs-lg="5"
-                vs-sm="4"
-                vs-xs="4">
+    <vs-card class="cardx ">
+      
+
+      <vs-row vs-justify="center" vs-type="flex" vs-align="center">
+        <div class="row">
+          <vs-col vs-type="flex"  vs-justify="center"  vs-align="center"  vs-w="6"
+                >
 
                   <div>
                   <h2>Contactos</h2>
@@ -40,18 +45,34 @@
                 </div>
               
       </vs-col>
-        <vs-col vs-type="flex" vs-justify="center"  vs-align="center"  vs-lg="7"
-                vs-sm="4"
-                vs-xs="4">
-                
+
+        
+     
+     
+          <vs-col  vs-type="flex" vs-justify="center"  vs-align="center"  vs-w="6"
+                >
+                <div>
                   <img
-                  src="../assets/contactos-phones.png"
-                  style="max-width: 90%;max-height: 90%; "
+                  srcset="../assets/contactos-phones.png 1x"
+                  style="max-width: 90%;height: auto; "
                 />
-                
-                
+                </div>
         </vs-col>
+        
+
+       
+          
+
+
+
+        </div>
+          
+        
+
       </vs-row>
+
+    
+
     </vs-card>
 
  
@@ -60,6 +81,13 @@
 
 </vs-col>
 </vs-row>
+
+
+
+
+  
+
+
 
   <!-- ///////////////////////////////////////////////////////// -->
   
@@ -85,7 +113,7 @@ export default class contactos extends Vue {
 .cardx {
   margin: 15px;
   background-color: #f5f5f5;
-  
+ height: auto;
  
 }
 
