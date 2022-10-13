@@ -20,24 +20,28 @@
                 vs-w="6"
               >
                 <div class="center content-inputs">
-                  <vs-input placeholder="Email">
-                    <template #message-success> Email Valid </template>
+                  <vs-h>Contacts</vs-h>
+                  <br>
+                  <br>
+                  <vs-input type="name" placeholder="Name">
+                    <!-- <template #message-danger> Required </template> -->
                   </vs-input>
-
-                  <vs-input placeholder="Name">
-                    <template #message-danger> Required </template>
+                 
+                  <br>
+                  <vs-input type="email" placeholder="Email">
+                    <!-- <template #message-success> Email Valid </template> -->
                   </vs-input>
-
-                  <vs-input type="password" placeholder="Password">
-                    <template #message-warn> Insecure password </template>
+                  <br>
+                  <vs-input type="text" placeholder="Phone">
+                    <!-- <template #message-warn> Insecure password </template> -->
                   </vs-input>
-
-                  <vs-input>
-                    <template> Email Valid </template>
-                    <template #message-danger> Email Invalid </template>
+                  <br>
+                  <vs-input type="text" placeholder="Message">
+                    <!-- <template > Email Valid </template>
+                    <template #message-danger> Email Invalid </template> -->
                   </vs-input>
-
-                  <vs-button>
+                  <br>
+                  <vs-button style="background=#FF9400;">
         Enviar 
       </vs-button>
 
