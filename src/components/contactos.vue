@@ -46,8 +46,10 @@
                     <template #message-danger> Email Invalid </template> -->
                   </vs-input>
                   <br>
-                  <vs-button color="#EE7717" type="relief" >Enviar</vs-button>
-                 
+                  
+        
+        <vs-button color="#EE7717" type="filled">Enviar</vs-button>
+    
    
 
 
