@@ -19,34 +19,7 @@
                 vs-align="center"
                 vs-w="6"
               >
-                <div class="center content-inputs">
-                  <vs-h>Contacts</vs-h>
-                  <br>
-                  <br>
-                  <vs-input  color="warning" type="name" text-color="#2C2A2A" placeholder="Name">
-                    <!-- <template #message-danger> Required </template> -->
-                  </vs-input>
-                 
-                  <br>
-                  <vs-input  color="#2C2A2A" type="name"  placeholder=" Last Name">
-                    <!-- <template #message-danger> Required </template> -->
-                  </vs-input>
-                 
-                  <br>
-                  <vs-input color="warning" type="email" text-color="#2C2A2A" placeholder="Email">
-                    <!-- <template #message-success> Email Valid </template> -->
-                  </vs-input>
-                  <br>
-                  <vs-input  color="warning" type="text" text-color="#2C2A2A" placeholder="Phone">
-                    <!-- <template #message-warn> Insecure password </template> -->
-                  </vs-input>
-                  <br>
-                  <vs-input  color="warning" type="text" text-color="#2C2A2A" placeholder="Message">
-                    <!-- <template > Email Valid </template>
-                    <template #message-danger> Email Invalid </template> -->
-                  </vs-input>
-                  <br>
-                  
+             
         
         <vs-button color="#EE7717" type="filled">Enviar</vs-button>
     
