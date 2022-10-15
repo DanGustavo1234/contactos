@@ -19,13 +19,66 @@
                 vs-align="center"
                 vs-w="6"
               >
-             
-        
-        <vs-button color="#EE7717" type="filled">Enviar</vs-button>
-    
-   
+                <div class="center content-inputs">
+                  <form @submit.prevent="onSubmit">
+                    <!-- Email -->
+                    <div
+                      class="form-group"
+                      :class="{ error: v$.form.email.$errors.length }"
+                    >
+                      <label for="">Email</label>
+                      <input
+                        class="form-control"
+                        placeholder="Enter your username"
+                        type="email"
+                        v-model="v$.form.email.$model"
+                      />
+                      <div
+                        class="pre-icon os-icon os-icon-user-male-circle"
+                      ></div>
+                      <!-- error message -->
+                      <div
+                        class="input-errors"
+                        v-for="(error, index) of v$.form.email.$errors"
+                        :key="index"
+                      >
+                        <div class="error-msg">{{ error.$message }}</div>
+                      </div>
+                    </div>
 
+                    <!-- password -->
+                    <div
+                      class="form-group"
+                      :class="{ error: v$.form.password.$errors.length }"
+                    >
+                      <label for="">Password</label>
+                      <input
+                        class="form-control"
+                        placeholder="Enter your password"
+                        type="password"
+                        v-model="v$.form.password.$model"
+                      />
+                      <div class="pre-icon os-icon os-icon-fingerprint"></div>
+                      <!-- error message -->
+                      <div
+                        class="input-errors"
+                        v-for="(error, index) of v$.form.password.$errors"
+                        :key="index"
+                      >
+                        <div class="error-msg">{{ error.$message }}</div>
+                      </div>
+                    </div>
 
+                    <!-- Submit Button -->
+                    <div class="buttons-w">
+                      <button
+                        :disabled="v$.form.$invalid"
+                        class="btn btn-primary"
+                      >
+                        Login
+                      </button>
+                    </div>
+                  </form>
                 </div>
               </vs-col>
 
@@ -52,12 +105,12 @@
   <!-- ///////////////////////////////////////////////////////// -->
 
   <!-- //////////////////////////////////////////// -->
-
-
 </template>
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
+import useVuelidate from '@vuelidate/core'
+import { required, email, minLength, sameAs } from '@vuelidate/validators'
 
 @Options({
   props: {
@@ -65,7 +118,41 @@ import { Options, Vue } from "vue-class-component";
   },
 })
 export default class contactos extends Vue {
+
+  setup () {
+    return { v$: useVuelidate() }
+  }
+
+  data() {
+    return {
+      form: {
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+      }
+    }
+  }
+
+  validations() {
+    return {
+      form: {
+        firstName: { 
+          required
+        },
+        lastName: { 
+          required
+        },
+        email: { required, email },
+        password: { required, min: minLength(6) },
+        confirmPassword: { required }
+      },
+    }
+  }
+
   msg!: string;
+
 }
 </script>
 
@@ -75,6 +162,4 @@ export default class contactos extends Vue {
   background-color: #f5f5f5;
   height: auto;
 }
-
-
 </style>
