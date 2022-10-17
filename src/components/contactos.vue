@@ -20,65 +20,39 @@
                 vs-w="6"
               >
                 <div class="center content-inputs">
-                  <form @submit.prevent="onSubmit">
-                    <!-- Email -->
-                    <div
-                      class="form-group"
-                      :class="{ error: v$.form.email.$errors.length }"
-                    >
-                      <label for="">Email</label>
-                      <input
-                        class="form-control"
-                        placeholder="Enter your username"
-                        type="email"
-                        v-model="v$.form.email.$model"
-                      />
-                      <div
-                        class="pre-icon os-icon os-icon-user-male-circle"
-                      ></div>
-                      <!-- error message -->
-                      <div
-                        class="input-errors"
-                        v-for="(error, index) of v$.form.email.$errors"
-                        :key="index"
-                      >
-                        <div class="error-msg">{{ error.$message }}</div>
-                      </div>
-                    </div>
-
-                    <!-- password -->
-                    <div
-                      class="form-group"
-                      :class="{ error: v$.form.password.$errors.length }"
-                    >
-                      <label for="">Password</label>
-                      <input
-                        class="form-control"
-                        placeholder="Enter your password"
-                        type="password"
-                        v-model="v$.form.password.$model"
-                      />
-                      <div class="pre-icon os-icon os-icon-fingerprint"></div>
-                      <!-- error message -->
-                      <div
-                        class="input-errors"
-                        v-for="(error, index) of v$.form.password.$errors"
-                        :key="index"
-                      >
-                        <div class="error-msg">{{ error.$message }}</div>
-                      </div>
-                    </div>
-
-                    <!-- Submit Button -->
-                    <div class="buttons-w">
-                      <button
-                        :disabled="v$.form.$invalid"
-                        class="btn btn-primary"
-                      >
-                        Login
-                      </button>
-                    </div>
-                  </form>
+                  <form @submit.prevent="handleSubmit">
+              <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" v-model="user.firstName" v-validate="'required'" id="firstName" name="firstName" class="form-control" :class="{ 'is-invalid': submitted && errors.has('firstName') }" />
+                <div v-if="submitted && errors.has('firstName')" class="invalid-feedback">
+                  {{ errors.first("firstName") }}
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" v-model="user.lastName" v-validate="'required'" id="lastName" name="lastName" class="form-control" :class="{ 'is-invalid': submitted && errors.has('lastName') }" />
+                <div v-if="submitted && errors.has('lastName')" class="invalid-feedback">
+                  {{ errors.first("lastName") }}
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" v-model="user.email" v-validate="'required|email'" id="email" name="email" class="form-control" :class="{ 'is-invalid': submitted && errors.has('email') }" />
+                <div v-if="submitted && errors.has('email')" class="invalid-feedback">
+                  {{ errors.first("email") }}
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" v-model="user.password" v-validate="{ required: true, min: 6 }" id="password" name="password" class="form-control" :class="{ 'is-invalid': submitted && errors.has('password') }" />
+                <div v-if="submitted && errors.has('password')" class="invalid-feedback">
+                  {{ errors.first("password") }}
+                </div>
+              </div>
+              <div class="form-group">
+                <button class="btn btn-primary">Register</button>
+              </div>
+            </form>
                 </div>
               </vs-col>
 
@@ -107,53 +81,36 @@
   <!-- //////////////////////////////////////////// -->
 </template>
 
-<script lang="ts">
-import { Options, Vue } from "vue-class-component";
-import useVuelidate from '@vuelidate/core'
-import { required, email, minLength, sameAs } from '@vuelidate/validators'
+ <script lang="ts">
 
-@Options({
-  props: {
-    msg: String,
-  },
-})
-export default class contactos extends Vue {
-
-  setup () {
-    return { v$: useVuelidate() }
-  }
-
+export default {
+  name: "app",
   data() {
     return {
-      form: {
-        firstName: '',
-        lastName: '',
-        email: '',
-        password: '',
-        confirmPassword: '',
-      }
-    }
-  }
-
-  validations() {
-    return {
-      form: {
-        firstName: { 
-          required
-        },
-        lastName: { 
-          required
-        },
-        email: { required, email },
-        password: { required, min: minLength(6) },
-        confirmPassword: { required }
+      user: {
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: ""
       },
+      submitted: false
+    };
+  },
+
+  methods: {
+    handleSubmit(e) {
+      this.submitted = true;
+      this.$validator.validate().then(valid => {
+        if (valid) {
+          alert("SUCCESS!! :-)\n\n" + JSON.stringify(this.user));
+        }
+      });
     }
   }
+};
 
-  msg!: string;
 
-}
+ 
 </script>
 
 <style>
